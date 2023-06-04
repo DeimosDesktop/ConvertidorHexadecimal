@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números en JS.</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <h1>Conversor de números.</h1>
+    <div class="container-fluid">
+    <div class="form-group">
+        <label for="nentero">Escribe un número entero</label>
+        <input type="text" class="form-control" id="nentero" aria-describedby="numberInteger" placeholder="Introduce un número entero">
+        <small id="numberInteger" class="form-text text-muted" style="display:none;" >Solo puedes introducir números enteros!!.</small>
+      </div>
+      <div class="form-group">
+        <label for="decimal">Resultado Hexadecimal:</label>
+        <input type="text" class="form-control" id="decimal" placeholder="Resultado de la operación">
+        <small id="numberFloat" class="form-text text-muted" style="display:none;">Solo números hexadecimales.</small>
+      </div>
+      <button onclick="cambiarDecimal()" class="btn btn-primary">Comprobar</button><button type="reset" class="btn btn-secondary" onclick ="limpiar()">Limpiar</button>
+    </div>
+    <script>
+        /*const numeroFlotante = `3,5`;document.write(numeroFlotante);
+        console.log(typeof(numeroFlotante));*/
+
+        /*let num1 = 5.0; let num2 =  3;
+        let suma = num1+num2
+        document.write(suma);
+        alert(`El valor de suma vale ${suma} y el del tipo ${typeof(suma)}`);*/
+
+        /*let num1 = 5.5; let num2 =  3.2; let num3 = 2.3;
+        let suma = num1+num2+num3
+        document.write(suma);
+        alert(`El valor de suma vale ${suma} y el del tipo ${typeof(suma)}`);*/
+
+        /*let num16 = 0xF
+        document.write(num16);*/
+        /*let num1 = 0.9999;
+        console.log(`El número ${num1} se redondea a: ${parseInt(num1)}`);
+        let num2 = "25";
+        console.log(`El número ${num2} de tipo ${typeof(num2)} se puede sumar al primero: ${parseInt(num2) + num1}`);
+        let num4 = parseInt("CBD, 16");
+        console.log(num4);
+        let num5 = Math.floor(Math.random() * 6);
+        console.log(num5);
+        let num6 = Math.ceil(Math.random() * 10) + 20;
+        console.log(num6);*/
+        
+
+        //CONVERSOR DE NÚMEROS. Comparte indicando la fuente: https://mirpas.com
+        
+            function cambiarDecimal(){
+                var entero = document.getElementById('nentero').value;
+        var decimal = document.getElementById('decimal');
+        console.log(entero);
+        digitosHex = "0123456789ABCDEF";
+        let resto = entero % 16; 
+        let dividendo = parseInt(entero / 16);
+        letra1 = digitosHex.charAt(resto);
+        console.log("resto :"+ resto);
+        console.log("Dividendo: " +dividendo);
+              do {
+                resto = parseInt(dividendo % 16);
+                letra2 = digitosHex.charAt(resto);
+                dividendo =  parseInt(dividendo / 16);
+                console.log(`El nuevo resto es: ${resto}`);
+                console.log(`El nuevo dividendo vale ${dividendo}`);
+              }while (dividendo > 15);
+alert("Ya no se puede dividir mas!");
+decimal.value +=digitosHex.charAt(dividendo);
+decimal.value +=digitosHex.charAt(resto);
+decimal.value +=letra1;
+            }
+function limpiar(){
+  document.getElementById('nentero').value ="";
+  document.getElementById('decimal').value="";
+ 
+}
+
+    </script>
+</body>
+<script>
+$(document).ready(function(){
+    $("h1").css("font-size", "30px");
+    $("h1").css("color", "red");
+});
+</script>
+</html>
